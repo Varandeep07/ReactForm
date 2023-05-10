@@ -1,28 +1,29 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import {Profile} from './components/Profile';
-import {Home} from './components/Home';
-import { useState, createContext} from 'react';
-
-export const AppContext = createContext();
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Profile } from "./components/Profile";
+import {Home} from "./components/Home";
 
 function App(){
-  const [userName,setUserName] = useState("Varan");
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false
+      }
+    }
+  });
+
   return (
-    <div className='App'>
-      <AppContext.Provider value={{userName,setUserName}}>
-      <Router>
-        <div>
-          <Link to='/'>Home</Link> <span> </span>
-          <Link to='/profile'>Profile</Link> 
-        </div>
-        <Routes>
-          <Route path = '/' element = {<Home />}/>
-          <Route path = '/profile' element = {<Profile />}/>
-          <Route path = '*' element = {<h1>Error page</h1>}/>
-        </Routes>
-      </Router>
-      </AppContext.Provider>
+    <div className="App">
+      <QueryClientProvider client={client}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path="*" element={<h2>Page not found</h2>}/>
+          </Routes>
+        </Router>
+      </QueryClientProvider>
     </div>
   );
 }

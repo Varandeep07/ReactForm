@@ -1,29 +1,14 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Profile } from "./components/Profile";
-import {Home} from "./components/Home";
+import './App.css';
+import {Form} from './components/Form';
 
-function App(){
-  const client = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false
-      }
-    }
-  });
 
+function App() {
   return (
-    <div className="App">
-      <QueryClientProvider client={client}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/profile" element={<Profile/>}/>
-            <Route path="*" element={<h2>Page not found</h2>}/>
-          </Routes>
-        </Router>
-      </QueryClientProvider>
+    <div className='App'>
+      <h1>React Form: </h1>
+      <div className='outerBox'>
+        <Form />
+      </div>
     </div>
   );
 }

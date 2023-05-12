@@ -2,11 +2,20 @@
   text-align: center;
 }
 
+p{
+  color: red;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+.outerBox{
+  padding: 20px;
+  margin: 20px 30rem 1px;
+  border-color:#202020;
+  border-radius: 4px;
+  border-style: solid;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
